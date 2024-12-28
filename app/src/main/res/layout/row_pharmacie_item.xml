@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.apachat.swipereveallayout.core.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/parentLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorSecondary"
+    app:dragEdge="right"
+    app:mode="same_level">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/pharmacie_edit"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="match_parent"
+            android:text="Edit"
+            android:gravity="center"
+            android:background="#3F51B5"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/pharmacie_delete"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="match_parent"
+            android:text="Delete"
+            android:gravity="center"
+            android:background="#E91E1E"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Medicine Image -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/medicine_image"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/baseline_health_and_safety_24"
+            app:civ_border_width="@dimen/_1sdp"
+            app:civ_border_color="@color/colorTextPrimary"
+            android:padding="@dimen/_5sdp"/>
+
+        <!-- Medicine Name -->
+        <TextView
+            android:id="@+id/medicine_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="medicine name"
+            android:textColor="@color/colorTextPrimary"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_toEndOf="@+id/medicine_image"
+            android:layout_toStartOf="@+id/dosageMedicine"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/_16sdp"/>
+
+        <!-- Dosage Image -->
+        <ImageView
+            android:id="@+id/dosageMedicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_healing_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:tint="@color/colorTextPrimary"/>
+    </RelativeLayout>
+
+
+</com.apachat.swipereveallayout.core.SwipeLayout>

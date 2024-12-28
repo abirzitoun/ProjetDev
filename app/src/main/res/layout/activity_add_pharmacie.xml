@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSecondary"
+    android:fitsSystemWindows="true"
+    tools:context=".AddPharmacie">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/_10sdp">
+        <!-- circle image  -->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileIv"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:src="@drawable/baseline_health_and_safety_24"
+            android:layout_gravity="center"
+            app:civ_border_width="@dimen/_1sdp"
+            app:civ_border_color="@color/colorTextPrimary"/>
+        <!-- edit texte pour nom input -->
+        <EditText
+            android:id="@+id/nomMedicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Medecine Name"
+            android:inputType="textShortMessage"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:drawableStart="@drawable/baseline_drive_file_rename_outline_24"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/colorTextSecondary"/>
+        <!-- edit texte pour Dosage input -->
+        <EditText
+            android:id="@+id/dosageMedicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="dosage"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:drawableStart="@drawable/baseline_healing_24"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/colorTextSecondary"/>
+        <!-- edit texte pour Prix input -->
+        <EditText
+            android:id="@+id/prixMedicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="price"
+            android:inputType="number"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:drawableStart="@drawable/baseline_price_check_24"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/colorTextSecondary"/>
+        <!-- edit texte pour validité input -->
+        <EditText
+            android:id="@+id/validiteMedicine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Period of validity"
+            android:inputType="date"
+            android:textColorHint="@color/white"
+            android:background="@drawable/background_input_field"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:drawableStart="@drawable/baseline_date_range_24"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/colorTextSecondary"/>
+
+
+    </LinearLayout>
+
+<!-- fab boutton pour ajouter à la base de donnée -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_10sdp"
+        android:backgroundTint="@color/colorTextPrimary"
+        android:contentDescription="TODO"
+        android:src="@drawable/baseline_add_24"
+        android:tint="@color/white"
+        android:elevation="@dimen/_5sdp"
+        app:pressedTranslationZ="@dimen/_10sdp"/>
+
+</RelativeLayout>
