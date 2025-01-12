@@ -93,15 +93,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonLogin">
 
-    </LinearLayout><![CDATA[
-
-
-
-    />
-
-
-
-    ]]>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewRegisterNow"

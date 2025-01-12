@@ -64,17 +64,6 @@
         <activity android:name=".RegisterActivity" android:exported="true" />
         <activity android:name=".ForgotPasswordActivity" android:exported="true" />
         <activity android:name=".ResetPasswordActivity" android:exported="true" />
-         <activity
-             android:name=".AddAmbulanceActivity"
-             android:exported="true" />
-         <activity
-             android:name=".AmbulanceActivity"
-             android:exported="true" />
-         <activity
-             android:name=".AmbulanceDetailsActivity"
-             android:exported="true" />
-         <activity
-             android:name=".EditAmbulanceActivity"
-             android:exported="true" />
+
     </application>
 </manifest>
