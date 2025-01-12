@@ -9,27 +9,27 @@
 
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="258dp"
-        android:layout_height="224dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="55dp"
+        android:layout_width="282dp"
+        android:layout_height="218dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="53dp"
         android:src="@drawable/cliniko_white_logo"
+        app:layout_constraintBottom_toTopOf="@+id/firstRowIcons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/logout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/logout" />
 
     <LinearLayout
         android:id="@+id/firstRowIcons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginBottom="24dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/secondRowIcons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImage">
+        app:layout_constraintTop_toBottomOf="@+id/logoImage">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -77,12 +77,12 @@
         android:id="@+id/secondRowIcons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginBottom="139dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/bottomButtons"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.563"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/firstRowIcons">
+        app:layout_constraintTop_toBottomOf="@+id/firstRowIcons">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -149,25 +149,27 @@
 
     <LinearLayout
         android:id="@+id/bottomButtons"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondRowIcons">
 
     </LinearLayout>
 
     <ImageView
         android:id="@+id/logout"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="16dp"
-
+        android:layout_width="58dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="23dp"
         android:src="@drawable/logout_gold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="48dp" />
+        app:layout_constraintBottom_toTopOf="@+id/logoImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
