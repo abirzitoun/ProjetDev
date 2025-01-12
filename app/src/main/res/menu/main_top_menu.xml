@@ -11,8 +11,8 @@
         android:id="@+id/sortMedecine"
         android:title="Sort"
         android:icon="@drawable/baseline_sort_24"
-        app:showAsAction="ifRoom"/>
-    <item
+            app:showAsAction="ifRoom"/>
+        <item
         android:id="@+id/deleteAllMedecine"
         android:title="Delete All"
         android:icon="@drawable/baseline_delete_sweep_24"

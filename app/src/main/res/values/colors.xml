@@ -2,9 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#222938</color>
+    <color name="colorPrimary">#00008B</color>
     <color name="colorSecondary">#2d3e52</color>
     <color name="colorTextPrimary">#13b298</color>
     <color name="colorTextSecondary">#CBD5ED</color>
     <color name="colorThemeExtra">#FF5252</color>
+    <color name="gold">#FFD700</color>
+    <color name="dark_blue">#00008B</color>
+
+
 </resources>

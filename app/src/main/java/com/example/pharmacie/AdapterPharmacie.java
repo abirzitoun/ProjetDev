@@ -14,8 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.apachat.swipereveallayout.core.SwipeLayout;
-
 import java.util.ArrayList;
 
 // Adapter class pour afficher des données dans un RecyclerView
@@ -47,6 +45,7 @@ public class AdapterPharmacie extends RecyclerView.Adapter<AdapterPharmacie.Phar
         String nom = modelPharmacie.getNom();
         String dosage = modelPharmacie.getDosage();
         String prix = modelPharmacie.getPrix();
+        String quantity = modelPharmacie.getQuantity();
         String validite = modelPharmacie.getValidite();
         String date = modelPharmacie.getDate();
         String time = modelPharmacie.getTime();
@@ -88,6 +87,7 @@ public class AdapterPharmacie extends RecyclerView.Adapter<AdapterPharmacie.Phar
                 intent.putExtra("image", image);
                 intent.putExtra("nom", nom);
                 intent.putExtra("dosage", dosage);
+                intent.putExtra("quantity", quantity);
                 intent.putExtra("prix", prix);
                 intent.putExtra("validite", validite);
                 intent.putExtra("date", date);
@@ -104,7 +104,7 @@ public class AdapterPharmacie extends RecyclerView.Adapter<AdapterPharmacie.Phar
             public void onClick(View v) {
               dbHelper.deleteData(id);
                 // refresh data
-                ((MainActivity)context).onResume();
+                ((PharmacyHomeActivity)context).onResume();
             }
         });
 

@@ -6,7 +6,7 @@
     android:id="@+id/parentLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    android:background="@color/colorSecondary"
+    android:background="@color/gold"
     app:dragEdge="right"
     app:mode="same_level">
     <LinearLayout
@@ -45,9 +45,11 @@
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:src="@drawable/baseline_health_and_safety_24"
+            android:drawableTint="@color/dark_blue"
             app:civ_border_width="@dimen/_1sdp"
-            app:civ_border_color="@color/colorTextPrimary"
-            android:padding="@dimen/_5sdp"/>
+            app:civ_border_color="@color/dark_blue"
+            android:padding="@dimen/_5sdp"
+           />
 
         <!-- Medicine Name -->
         <TextView
@@ -55,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="medicine name"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/dark_blue"
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_toEndOf="@+id/medicine_image"
             android:layout_toStartOf="@+id/dosageMedicine"
@@ -68,10 +70,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_healing_24"
+            android:drawableTint="@color/dark_blue"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
             android:layout_marginEnd="@dimen/_10sdp"
-            app:tint="@color/colorTextPrimary"/>
+            app:tint="@color/dark_blue"/>
     </RelativeLayout>
 
 

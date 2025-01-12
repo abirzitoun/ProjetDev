@@ -55,6 +55,9 @@ dependencies {
     implementation(libs.mysql.connector.java)
 // Swipe Reveal Layout
     implementation(libs.swipereveallayout)
+    implementation(libs.android.mail)
+    implementation(libs.android.activation)
+
 
 
 }

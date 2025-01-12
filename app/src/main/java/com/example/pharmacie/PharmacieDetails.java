@@ -17,7 +17,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class PharmacieDetails extends AppCompatActivity {
-private TextView nomTv, dosageTv, prixTv,validiteTv, dateTv, timeTv;
+private TextView nomTv, dosageTv, prixTv,quantityTv,validiteTv, dateTv, timeTv;
 private ImageView profileIv;
 private String id ;
 //data base helper
@@ -40,6 +40,8 @@ private String id ;
 nomTv = findViewById(R.id.nomTv);
 dosageTv = findViewById(R.id.dosageTv);
 prixTv = findViewById(R.id.prixTv);
+dosageTv = findViewById(R.id.dosageTv);
+quantityTv = findViewById(R.id.quantityTv);
 validiteTv = findViewById(R.id.validiteTv);
 dateTv = findViewById(R.id.dateTv);
 timeTv = findViewById(R.id.timeTv);
@@ -63,6 +65,7 @@ loadDataById();
                 String image = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_IMAGE));
                 String dosage = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_DOSAGE));
                 String prix = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_PRIX));
+                String quantity = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_QUANTITY));
                 String validite = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_VALIDITE));
                 String date = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_DATE));
                 String time = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_UPDATED_TIME));
@@ -79,6 +82,8 @@ loadDataById();
                 nomTv.setText(nom);
                 dosageTv.setText(dosage);
                 prixTv.setText(prix);
+                dosageTv.setText(dosage);
+                quantityTv.setText(quantity);
                 validiteTv.setText(validite);
                 dateTv.setText(timeAdd);
                 timeTv.setText(timeUpdate);

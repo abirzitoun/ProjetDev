@@ -1,149 +1,72 @@
 package com.example.pharmacie;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.SearchView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.os.Bundle;
+import android.widget.ImageButton;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.app.AlertDialog;
+import android.os.AsyncTask;
 
 public class MainActivity extends AppCompatActivity {
-    //view
-    private FloatingActionButton fab;
-    private RecyclerView pharmacieRv;
-    //db
-    private DbHelper dbHelper;
-    //adapter
-    private AdapterPharmacie adapterPharmacie;
-    //action bar
-    private ActionBar actionBar;
-    // sort  category
-    private String sortByNewest = Constants.C_ADDED_DATE + " ASC";
-    private String getSortByOldest = Constants.C_ADDED_DATE + " DESC";
-    private String getSortByAZ = Constants.C_NOM + " ASC";
-    private String getSortByZA = Constants.C_NOM + " DESC";
-    //set cuurrent sort order
-    private String currentSort = sortByNewest;
+    private String generatedCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        //init action bar
-        actionBar = getSupportActionBar();
 
-        //init db
-        dbHelper = new DbHelper(this);
-        fab = findViewById(R.id.fab);
-        pharmacieRv = findViewById(R.id.pharmacieRv);
-        pharmacieRv.setHasFixedSize(true);
-        //add listenner
+        ImageButton btnGoToHome = findViewById(R.id.pharmacyButton);
+        btnGoToHome.setOnClickListener(v -> {
+            // 1. Générer un code
+            generatedCode = CodeGenerator.generateCode();
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-                    public void onClick(View v){
-                // move to new activity to add contact
-                Intent intent = new Intent(MainActivity.this, AddPharmacie.class);
-                intent.putExtra("isEditMode", false);
-                startActivity(intent);
-            }
+            // 2. Envoyer un e-mail avec le code en arrière-plan
+            new SendEmailTask().execute("Souissi.Achref@esprit.tn", generatedCode);
+
+            // 3. Afficher une boîte de dialogue pour entrer le code
+            showValidationDialog();
         });
-
-        loadData(currentSort);
-
     }
 
-
-    private void loadData(String currentSort) {
-        adapterPharmacie = new AdapterPharmacie(dbHelper.getAllData(currentSort), this);
-        pharmacieRv.setAdapter(adapterPharmacie);
-
-
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadData(currentSort); // refresh data
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_top_menu, menu);
-        // get search item
-        MenuItem item = menu.findItem(R.id.searchMedecine);
-        //search area
-        SearchView searchView = (SearchView) item.getActionView() ;
-        // set max value for width
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchPharmacie(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                    searchPharmacie(newText);
-                return false;
-            }
-        });
-
-        return true ;
-    }
-    private void searchPharmacie(String query) {
-       adapterPharmacie = new AdapterPharmacie(dbHelper.getSearchPharmacie(query), this);
-       pharmacieRv.setAdapter(adapterPharmacie);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.deleteAllMedecine) {
-            dbHelper.deleteAllData();
-            onResume();
-            return true;
-        } else if (item.getItemId() == R.id.sortMedecine ) {
-            sortDialog();
-            
-        }
-        {
-            
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void sortDialog() {
-        //option for alert dialog
-        String [] option =   {"Newest", "Oldest", "A to Z", "Z to A"};
-        //Alert dialog builder
+    private void showValidationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sort By");
-            builder.setItems(option,new DialogInterface.OnClickListener(){
-                @Override
-        public void onClick (DialogInterface dialog, int which){
-                    if (which == 0) {
-                        loadData(sortByNewest);
-                    } else if (which == 1) {
-                        loadData(getSortByOldest);
-                }else if (which == 2) {
-                        loadData(getSortByAZ);
-                    }else if (which == 3) {
-                        loadData(getSortByZA);
-                    }
-                }
-            }) ;
-            builder.create().show();
+        builder.setTitle("Validation par e-mail");
 
-    }
+        final EditText input = new EditText(this);
+        builder.setView(input);
+
+        builder.setPositiveButton("Valider", (dialog, which) -> {
+            String enteredCode = input.getText().toString();
+            if (enteredCode.equals(generatedCode)) {
+                // Code correct, passer à l'activité suivante
+                Intent intent = new Intent(MainActivity.this, PharmacyHomeActivity.class);
+                startActivity(intent);
+            } else {
+                // Code incorrect
+                Toast.makeText(MainActivity.this, "Code incorrect, réessayez.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Annuler", (dialog, which) -> dialog.cancel());
+
+        builder.show();
     }
 
+    // AsyncTask pour envoyer l'email en arrière-plan
+    private static class SendEmailTask extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... params) {
+            String email = params[0];
+            String code = params[1];
+            try {
+                // Envoyer l'e-mail en arrière-plan
+                MailSender.sendValidationEmail(email, code);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+}

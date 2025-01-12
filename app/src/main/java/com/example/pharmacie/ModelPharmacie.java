@@ -1,14 +1,15 @@
 package com.example.pharmacie;
 //ModelClass for data
 public class ModelPharmacie {
-    private String id,nom,image,dosage,prix,validite,date,time;
+    private String id,nom,image,dosage,quantity,prix,validite,date,time;
     //create constructors
 
-    public ModelPharmacie(String id, String nom, String image, String dosage, String prix, String validite, String date, String time) {
+    public ModelPharmacie(String id, String nom, String image, String dosage,String quantity, String prix, String validite, String date, String time) {
         this.id = id;
         this.nom = nom;
         this.image = image;
         this.dosage = dosage;
+        this.quantity = quantity;
         this.prix = prix;
         this.validite = validite;
         this.date = date;
@@ -61,6 +62,7 @@ public class ModelPharmacie {
         return validite;
     }
 
+
     public void setValidite(String validite) {
         this.validite = validite;
     }
@@ -79,5 +81,13 @@ public class ModelPharmacie {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

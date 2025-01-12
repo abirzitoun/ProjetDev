@@ -31,7 +31,7 @@
         }
 
         // Fonction pour insérer des données dans la base de données
-        public long insertData(String image, String nom, String dosage, String prix, String validite, String addedDate, String updatedTime) {
+        public long insertData(String image, String nom, String dosage, String prix,String quantity, String validite, String addedDate, String updatedTime) {
             // Obtenir une instance de la base de données en écriture
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -41,6 +41,7 @@
             contentValues.put(Constants.C_NOM, nom);
             contentValues.put(Constants.C_DOSAGE, dosage);
             contentValues.put(Constants.C_PRIX, prix);
+            contentValues.put(Constants.C_QUANTITY, quantity);
             contentValues.put(Constants.C_VALIDITE, validite);
             contentValues.put(Constants.C_ADDED_DATE, addedDate);
             contentValues.put(Constants.C_UPDATED_TIME, updatedTime);
@@ -56,7 +57,7 @@
         }
 
         //update function to update data in db
-        public void updateData(String id, String image, String nom, String dosage, String prix, String validite, String addedDate, String updatedTime) {
+        public void updateData(String id, String image, String nom, String dosage, String prix,String quantity, String validite, String addedDate, String updatedTime) {
             // Obtenir une instance de la base de données en écriture
             SQLiteDatabase db = this.getWritableDatabase();
 
@@ -66,6 +67,7 @@
             contentValues.put(Constants.C_NOM, nom);
             contentValues.put(Constants.C_DOSAGE, dosage);
             contentValues.put(Constants.C_PRIX, prix);
+            contentValues.put(Constants.C_QUANTITY, quantity);
             contentValues.put(Constants.C_VALIDITE, validite);
             contentValues.put(Constants.C_ADDED_DATE, addedDate);
             contentValues.put(Constants.C_UPDATED_TIME, updatedTime);
@@ -125,12 +127,13 @@
                     String image = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_IMAGE));
                     String dosage = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_DOSAGE));
                     String prix = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_PRIX));
+                    String quantity = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_QUANTITY));
                     String validite = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_VALIDITE));
                     String date = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_DATE));
                     String time = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_UPDATED_TIME));
 
                     // Créer un objet ModelPharmacie et l'ajouter à la liste
-                    ModelPharmacie modelPharmacie = new ModelPharmacie(id, nom, image, dosage, prix, validite, date, time);
+                    ModelPharmacie modelPharmacie = new ModelPharmacie(id, nom, image, dosage, prix,quantity, validite, date, time);
                     list.add(modelPharmacie);
 
                 } while (cursor.moveToNext());
@@ -162,16 +165,18 @@
                     String image = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_IMAGE));
                     String dosage = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_DOSAGE));
                     String prix = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_PRIX));
+                    String quantity = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_QUANTITY));
                     String validite = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_VALIDITE));
                     String date = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_ADDED_DATE));
                     String time = cursor.getString(cursor.getColumnIndexOrThrow(Constants.C_UPDATED_TIME));
 
                     // Créer un objet ModelPharmacie et l'ajouter à la liste
-                    ModelPharmacie modelPharmacie = new ModelPharmacie(id, nom, image, dosage, prix, validite, date, time);
+                    ModelPharmacie modelPharmacie = new ModelPharmacie(id, nom, image, dosage, prix,quantity, validite, date, time);
                     list.add(modelPharmacie);
 
                 } while (cursor.moveToNext());
             }
+            cursor.close();
             db.close();
             return list ;
 

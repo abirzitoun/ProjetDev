@@ -5,6 +5,9 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,15 +28,23 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-
+import android.content.ContentResolver;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.provider.Settings;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AddPharmacie extends AppCompatActivity {
-
+    private SensorManager sensorManager;
+    private Sensor lightSensor;
+    private SensorEventListener lightSensorListener;
     private ImageView profileIv;
-    private EditText nomMedicine, dosageMedicine, prixMedicine, validiteMedicine;
+    private EditText nomMedicine, dosageMedicine,quantityMedecine, prixMedicine, validiteMedicine;
     private FloatingActionButton fab;
-    private String id,nom,image,dosage, prix, validite,date,time;
+    private String id,nom,image,dosage,quantity, prix, validite,date,time;
     private Boolean isEditMode ;
     private ActionBar actionBar;
     //permission constant
@@ -62,6 +73,26 @@ public class AddPharmacie extends AppCompatActivity {
         //init permission
         cameraPermissions = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        lightSensorListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.sensor.getType() == Sensor.TYPE_LIGHT) {
+                    // Get the ambient light level (lux)
+                    float lightLevel = event.values[0];
+
+                    // Adjust the screen brightness based on the light level
+                    setScreenBrightnessBasedOnLight(lightLevel);
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+                // Not needed for this example
+            }
+        };
+
 
         //init action bar
         actionBar = getSupportActionBar();
@@ -75,6 +106,7 @@ public class AddPharmacie extends AppCompatActivity {
         profileIv = findViewById(R.id.profileIv);
         nomMedicine = findViewById(R.id.nomMedicine);
         dosageMedicine = findViewById(R.id.dosageMedicine);
+        quantityMedecine = findViewById(R.id.quantityMedecine);
         prixMedicine = findViewById(R.id.prixMedicine);
         validiteMedicine = findViewById(R.id.validiteMedicine);
         fab = findViewById(R.id.fab);
@@ -90,6 +122,7 @@ public class AddPharmacie extends AppCompatActivity {
             nom = intent.getStringExtra("nom");
             dosage = intent.getStringExtra("dosage");
             prix = intent.getStringExtra("prix");
+            quantity = intent.getStringExtra("quantity");
             validite = intent.getStringExtra("validite");
             date = intent.getStringExtra("date");
             time = intent.getStringExtra("time");
@@ -97,6 +130,7 @@ public class AddPharmacie extends AppCompatActivity {
             nomMedicine.setText(nom);
             dosageMedicine.setText(dosage);
             prixMedicine.setText(prix);
+            quantityMedecine.setText(quantity);
             validiteMedicine.setText(validite);
             imageUri = Uri.parse(intent.getStringExtra("image"));
             if(image.equals("")){
@@ -125,7 +159,36 @@ public class AddPharmacie extends AppCompatActivity {
 
         });
 
+
     }
+    private void setScreenBrightnessBasedOnLight(float lightLevel) {
+        // Calculate a brightness value based on the ambient light level
+        int brightness = (int) (lightLevel * 2);  // Simple example to adjust brightness
+
+        // Clamp the brightness value between 0 and 255 (valid brightness range)
+        brightness = Math.max(0, Math.min(brightness, 255));
+
+        // Set the screen brightness using the system settings
+        ContentResolver contentResolver = getContentResolver();
+        Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Register the sensor listener to start receiving light sensor data
+        if (lightSensor != null) {
+            sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_UI);
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Unregister the sensor listener to stop receiving data when the activity is paused
+        if (lightSensor != null) {
+            sensorManager.unregisterListener(lightSensorListener);
+        }
+    }
+
 
     private void showImagePickDialog() {
         //option for dialog
@@ -187,13 +250,14 @@ public class AddPharmacie extends AppCompatActivity {
         nom = nomMedicine.getText().toString();
         dosage = dosageMedicine.getText().toString();
         prix = prixMedicine.getText().toString();
+        quantity = quantityMedecine.getText().toString();
         validite = validiteMedicine.getText().toString();
         //get current time to save as added time
         String timeStamp = "" + System.currentTimeMillis();
 
 
         // check filed data
-        if (!nom.isEmpty() || !dosage.isEmpty() || !prix.isEmpty() || !validite.isEmpty()) {
+        if (!nom.isEmpty() || !dosage.isEmpty() || !prix.isEmpty() || !validite.isEmpty() || !quantity.isEmpty()) {
             //save data ,if user have only one data
             //check edit or add mode to save data in sql
             if(isEditMode){
@@ -204,11 +268,12 @@ public class AddPharmacie extends AppCompatActivity {
                         ""+nom,
                         ""+dosage,
                         ""+prix,
+                        ""+quantity,
                         ""+validite,
                         ""+date,
                         ""+timeStamp
 
-                ); ;
+                );
 
                 Toast.makeText(getApplicationContext(),"Updated Successfully...",Toast.LENGTH_SHORT).show();
 
@@ -220,6 +285,7 @@ public class AddPharmacie extends AppCompatActivity {
                         ""+nom,
                         ""+dosage,
                         ""+prix,
+                        ""+quantity,
                         ""+validite,
                         ""+timeStamp,
                         ""+timeStamp

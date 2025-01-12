@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- user permission -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -15,8 +17,9 @@
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-
+    <!-- Set your custom theme : android:theme="@style/Theme.Pharmacie" -->
     <application
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -24,10 +27,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pharmacie"
         tools:targetApi="31">
         <activity
             android:name=".PharmacieDetails"
+            android:exported="false" />
+        <activity
+            android:name=".PharmacyHomeActivity"
             android:exported="false" />
         <activity
             android:name=".AddPharmacie"

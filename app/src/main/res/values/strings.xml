@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">pharmacie</string>
+    <string name="app_name">pharmacy</string>
+
+    <string name="pharmacy_button_desc">Go to Pharmacy Home</string>
+
 </resources>
