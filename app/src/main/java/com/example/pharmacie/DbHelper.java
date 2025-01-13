@@ -78,7 +78,6 @@
             // Fermer la connexion à la base de données
             db.close();
 
-            // Retourner l'ID de la nouvelle ligne insérée
 
         }
 

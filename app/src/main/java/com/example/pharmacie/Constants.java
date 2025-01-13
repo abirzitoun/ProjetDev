@@ -17,7 +17,7 @@ public class Constants {
     public static final String C_VALIDITE = "validite";
     public static final String C_ADDED_DATE = "date";
     public static final String C_UPDATED_TIME = "time";
-    //query for create table
+    //Requête SQL pour créer la table :
     public static final String CREATE_TABLE ="CREATE TABLE " + TABLE_NAME +"("
             + C_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + C_IMAGE + " TEXT,"
@@ -29,8 +29,5 @@ public class Constants {
             + C_ADDED_DATE + " TEXT,"
             + C_UPDATED_TIME + " TEXT"
             + ")";
-    //query database helper class for CRUD Query and DataBase Creation
-
-
 
 }

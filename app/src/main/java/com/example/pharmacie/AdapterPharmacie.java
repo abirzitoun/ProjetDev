@@ -16,25 +16,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-// Adapter class pour afficher des données dans un RecyclerView
+
 public class AdapterPharmacie extends RecyclerView.Adapter<AdapterPharmacie.PharmacieViewHolder> {
     private Context context;
     private ArrayList<ModelPharmacie> pharmacieArrayList;
     private DbHelper dbHelper;
-
+    //Le constructeur initialise les données
     public AdapterPharmacie(ArrayList<ModelPharmacie> pharmacieArrayList, Context context) {
         this.pharmacieArrayList = pharmacieArrayList;
         this.context = context;
         dbHelper = new DbHelper(context);
     }
-
+        // créer une nouvelle vue pour un élément de la liste
     @NonNull
     @Override
     public PharmacieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.row_pharmacie_item, parent, false);
         return new PharmacieViewHolder(view);
     }
-
+    //lecture de données
     @Override
     public void onBindViewHolder(@NonNull PharmacieViewHolder holder, int position) {
         ModelPharmacie modelPharmacie = pharmacieArrayList.get(position);
@@ -64,8 +64,7 @@ public class AdapterPharmacie extends RecyclerView.Adapter<AdapterPharmacie.Phar
         }
 
         // Gestion des clics
-
-        //handle item click and show pharmacie details
+        //affiche pharmacie details
         holder.relativeLayout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -110,7 +109,7 @@ public class AdapterPharmacie extends RecyclerView.Adapter<AdapterPharmacie.Phar
 
 
     }
-
+    // les nombres des éélemnets que l'adaptateur doit afficher.
     @Override
     public int getItemCount() {
         return pharmacieArrayList.size();

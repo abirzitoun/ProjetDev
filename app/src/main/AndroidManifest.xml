@@ -37,6 +37,10 @@
         <activity
             android:name=".AddPharmacie"
             android:exported="false" />
+        <activity android:name=".ModifyLabActivity" />
+        <activity android:name=".AddLabActivity"/>
+        <activity android:name=".Scanner"/>
+        <activity android:name=".ClinicMain"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

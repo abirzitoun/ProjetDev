@@ -2,5 +2,6 @@
     <string name="app_name">pharmacy</string>
 
     <string name="pharmacy_button_desc">Go to Pharmacy Home</string>
+    <string name="laboratory_description">Laboratory Button</string>
 
 </resources>

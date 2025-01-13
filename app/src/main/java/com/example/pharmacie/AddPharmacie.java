@@ -110,13 +110,13 @@ public class AddPharmacie extends AppCompatActivity {
         prixMedicine = findViewById(R.id.prixMedicine);
         validiteMedicine = findViewById(R.id.validiteMedicine);
         fab = findViewById(R.id.fab);
-        //get intent data
+        //récuperer intent data
         Intent intent = getIntent();
         isEditMode = intent.getBooleanExtra("isEditMode", false);
         if(isEditMode){
-            //set toolbar title
+            //toolbar title
             actionBar.setTitle("update Medecine");
-            //get data from intent
+            //récuperer data de intent
             id = intent.getStringExtra("id");
             image = intent.getStringExtra("image");
             nom = intent.getStringExtra("nom");
@@ -126,7 +126,7 @@ public class AddPharmacie extends AppCompatActivity {
             validite = intent.getStringExtra("validite");
             date = intent.getStringExtra("date");
             time = intent.getStringExtra("time");
-            //set  value in edit text
+            //set valeur in edit text
             nomMedicine.setText(nom);
             dosageMedicine.setText(dosage);
             prixMedicine.setText(prix);
@@ -140,7 +140,6 @@ public class AddPharmacie extends AppCompatActivity {
             }
 
         }else {
-        //add mode on
             actionBar.setTitle("Add Medecine");
         }
 
@@ -162,20 +161,14 @@ public class AddPharmacie extends AppCompatActivity {
 
     }
     private void setScreenBrightnessBasedOnLight(float lightLevel) {
-        // Calculate a brightness value based on the ambient light level
-        int brightness = (int) (lightLevel * 2);  // Simple example to adjust brightness
-
-        // Clamp the brightness value between 0 and 255 (valid brightness range)
+        int brightness = (int) (lightLevel * 2);
         brightness = Math.max(0, Math.min(brightness, 255));
-
-        // Set the screen brightness using the system settings
         ContentResolver contentResolver = getContentResolver();
         Settings.System.putInt(contentResolver, Settings.System.SCREEN_BRIGHTNESS, brightness);
     }
     @Override
     protected void onResume() {
         super.onResume();
-        // Register the sensor listener to start receiving light sensor data
         if (lightSensor != null) {
             sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_UI);
         }
@@ -183,36 +176,27 @@ public class AddPharmacie extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // Unregister the sensor listener to stop receiving data when the activity is paused
         if (lightSensor != null) {
             sensorManager.unregisterListener(lightSensorListener);
         }
     }
 
-
+    //prendre une photo avec la caméra ou choisir une image dans la galerie de médicaments
     private void showImagePickDialog() {
-        //option for dialog
-
         String options[] = {"camera", "MedecineGallery"};
-        // Alert dialog builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //setTitle
         builder.setTitle("Choose An Option");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
-                //handle item
-                if (which == 0) { // start from 0 index
-                    //camera selected
+                if (which == 0) {
                     if (!checkCameraPermission()) {
-                        //request camera permission
                         requestCameraPermission();
                     } else {
                         pickFromCamera();
 
                     }
                 } else if (which == 1) {
-                    // medecine galery selected
                     if (!checkStoragePermission()) {
                         requestStoragePermission();
                     } else {
@@ -231,11 +215,9 @@ public class AddPharmacie extends AppCompatActivity {
     }
 
     private void pickFromCamera() {
-        //contentValues for image info
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "New Picture");
         values.put(MediaStore.Images.Media.DESCRIPTION, "Image Details");
-
         //save imageUri
         imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
         // intent to open camera
@@ -290,7 +272,6 @@ public class AddPharmacie extends AppCompatActivity {
                         ""+timeStamp,
                         ""+timeStamp
                 ) ;
-                // to check insert data successfully, show a toast msg
                 Toast.makeText(getApplicationContext(),"Inserted Successfully..."+id,Toast.LENGTH_SHORT).show() ;
             }
 
@@ -394,10 +375,5 @@ public class AddPharmacie extends AppCompatActivity {
     }
 
 }
-    //Medicine Image taking with user permission and crop functionality
-    // first permission from manifest,check,requestPermission
-    //by clicking profileIv open dialog to choose image
-    //pickImage and Save in ImageUri variable
-    //create a class called "constants" for data base and table filed title
-    //now insert data in db from addPharmacie
+
     

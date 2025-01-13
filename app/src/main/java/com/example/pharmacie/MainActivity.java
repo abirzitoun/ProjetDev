@@ -3,6 +3,7 @@ package com.example.pharmacie;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ImageButton btnGoToClinic = findViewById(R.id.labButton);
         ImageButton btnGoToHome = findViewById(R.id.pharmacyButton);
         btnGoToHome.setOnClickListener(v -> {
             // 1. Générer un code
@@ -27,6 +28,13 @@ public class MainActivity extends AppCompatActivity {
 
             // 3. Afficher une boîte de dialogue pour entrer le code
             showValidationDialog();
+        });
+        btnGoToClinic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ClinicMain.class); // Replace MainActivity with your current activity
+                startActivity(intent);
+            }
         });
     }
 
