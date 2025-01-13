@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Cliniko</string>
+    <string name="amit_kumar">Betty</string>
+    <string name="username">Patient</string>
+    <string name="bio">Great post! 😊 Really enjoyed reading it! 👍 Keep up the good work! 👏</string>
+    <string name="profile">Profile</string>
+    <string name="about">About</string>
+    <string name="user_information">User Information</string>
+    <string name="username_">Username</string>
+    <string name="coder">coder</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="age">Age</string>
+    <string name="_21">21</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="_07_02_2003">07/02/2003</string>
+    <string name="mobile">Mobile</string>
+    <string name="_91_9000000009">+91 9000000009</string>
+    <string name="email">Email</string>
+    <string name="axxxxxxa_gmail_com">axxxxxxa@gmail.com</string>
+    <string name="social_media">Social Media</string>
+    <string name="hint_search">Search</string>
+    <string name="show_followers_following_count"></string>
+    <string name="boards">List</string>
+    <string name="home">Home</string>
+    <string name="following">Following</string>
+    <string name="notification">Notifications</string>
+    <string name="saved">Saved</string>
+    <string name="all">All</string>
+    <string name="recipes">Recipes</string>
+    <string name="decor">Decor</string>
+    <string name="fashion_inspiration">Fashion Inspiration</string>
+    <string name="neha">Neha</string>
+    <string name="pins">Pins</string>
+    <string name="followers">Followers</string>
+    <string name="tried">Tried</string>
+    <string name="tables">Tables</string>
+
+    <string name="google_api_key">1032235884735-91u1q0f18ek881ivhm771988be7jqt7t.apps.googleusercontent.com</string>
+
+
+
+    <string name="login_email_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+
+
+
+</resources>

@@ -1,0 +1,80 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.formPatient">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+     <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/cliniko_dark"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/cliniko_dark"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FormulaireSAE2"
+        tools:targetApi="31"
+        android:hardwareAccelerated="true"
+        android:usesCleartextTraffic="true">
+
+         <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+         <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".PayActivity" android:exported="true" />
+         <activity android:name=".SuccessActivity" android:exported="true" />
+         <activity android:name=".EditPatientActivity" android:exported="true" />
+        <activity android:name=".AddPatientActivity" android:exported="true" />
+        <activity android:name=".PatientDetailsActivity" android:exported="true" />
+        <activity android:name=".RendezVousActivity" android:exported="true" />
+        <activity android:name=".PatientActivity" android:exported="true" />
+        <activity android:name=".EditRendezVousActivity" android:exported="true" />
+        <activity android:name=".AddRendezVousActivity" android:exported="true" />
+        <activity android:name=".RegisterActivity" android:exported="true" />
+        <activity android:name=".ForgotPasswordActivity" android:exported="true" />
+        <activity android:name=".ResetPasswordActivity" android:exported="true" />
+         <activity
+             android:name=".AddAmbulanceActivity"
+             android:exported="true" />
+         <activity
+             android:name=".AmbulanceActivity"
+             android:exported="true" />
+         <activity
+             android:name=".AmbulanceDetailsActivity"
+             android:exported="true" />
+         <activity
+             android:name=".EditAmbulanceActivity"
+             android:exported="true" />
+    </application>
+</manifest>

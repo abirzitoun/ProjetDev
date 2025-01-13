@@ -1,0 +1,114 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:layout_marginBottom="4dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Enlarged Profile Image -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/button_show"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/_898915_fever_man_mask_patient_protection_icon"
+                    android:layout_marginEnd="8dp"
+                    android:contentDescription="Profile Image"
+                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/white" />
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/patient_full_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppinsregular"
+                        android:text="John Doe"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="2dp">
+
+
+                        <TextView
+                            android:id="@+id/patient_email"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:text="+21693063686"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+
+
+
+                        <Button
+                            android:id="@+id/button_delete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Delete"
+                            android:textSize="11sp"
+                            android:padding="4dp"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            android:backgroundTint="@color/primaryTextColor"
+
+                            android:layout_marginEnd="4dp" />
+
+
+                        <Button
+                            android:id="@+id/button_edit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Edit"
+                            android:textSize="11sp"
+                            android:backgroundTint="@color/spinner_border"
+                            android:padding="4dp"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

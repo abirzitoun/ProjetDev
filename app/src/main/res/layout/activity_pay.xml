@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background_color">
+
+
+    <ImageView
+        android:id="@+id/nfcIcon"
+        android:layout_width="291dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="NFC Payment Icon"
+        android:src="@drawable/_622834_cards_credit_method_pay_payment_icon" />
+
+
+    <TextView
+        android:id="@+id/nfcStatusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hold your NFC-enabled device near the terminal"
+        android:textSize="18sp"
+        android:textColor="@color/navy_blue"
+        android:textAlignment="center"
+        android:layout_below="@id/nfcIcon"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"  />
+
+
+    <TextView
+        android:id="@+id/helpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ensure NFC is enabled on your device."
+        android:textSize="14sp"
+        android:textColor="@color/spinner_border"
+        android:layout_below="@id/nfcStatusText"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:layout_marginTop="4dp"  />
+</RelativeLayout>
