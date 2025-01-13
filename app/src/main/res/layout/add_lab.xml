@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add New Lab Entry"
+        android:textColor="@color/dark_blue"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-medium"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Name Input -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter name"
+        android:inputType="textPersonName"
+        android:backgroundTint="@color/dark_blue"
+        android:textColor="@color/dark_blue"
+        android:textColorHint="@color/gold"
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif" />
+
+    <!-- Description Input -->
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter description"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:gravity="top"
+        android:backgroundTint="@color/dark_blue"
+        android:textColor="@color/dark_blue"
+        android:textColorHint="@color/gold"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif" />
+
+    <!-- Date Input -->
+    <EditText
+        android:id="@+id/dateadd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:hint="Select Date"
+        android:textColor="@color/dark_blue"
+        android:backgroundTint="@color/dark_blue"
+        android:textColorHint="@color/gold"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:drawablePadding="8dp" />
+
+    <!-- Add Button -->
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:backgroundTint="@color/gold"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:textAllCaps="false"
+        android:fontFamily="sans-serif-medium" />
+</LinearLayout>
